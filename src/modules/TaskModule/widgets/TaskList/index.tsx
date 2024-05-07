@@ -4,12 +4,17 @@ import TaskApiService from "../../services/api";
 import TaskGroup from "../../components/TaskGroup";
 
 const TaskList = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [tasks, setTasks] = useState<Task[]>([]);
 
   useEffect(() => {
-    TaskApiService.getTasks().then((tasks) => {
-      setTasks(tasks);
-    });
+    TaskApiService.getTasks()
+      .then((tasks) => {
+        setTasks(tasks);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, []);
 
   const handleTaskChange = (updatedTask: Task) => {
@@ -20,6 +25,14 @@ const TaskList = () => {
 
   const newTasks = tasks.filter((task) => task.status === "new");
   const completedTasks = tasks.filter((task) => task.status === "done");
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center">
+        <span className="loading loading-spinner"></span>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-4 max-h-[10vh]">
