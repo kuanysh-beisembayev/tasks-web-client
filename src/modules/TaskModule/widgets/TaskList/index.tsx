@@ -2,12 +2,18 @@ import { useEffect, useState } from "react";
 import { Task } from "../../types";
 import TaskApiService from "../../services/api";
 import TaskGroup from "../../components/TaskGroup";
+import { useRecoilState } from "recoil";
+import { tasksState } from "../../store";
 
 const TaskList = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [tasks, setTasks] = useRecoilState(tasksState);
 
   useEffect(() => {
+    if (tasks.length === 0) {
+      setIsLoading(true);
+    }
+
     TaskApiService.getTasks()
       .then((tasks) => {
         setTasks(tasks);
@@ -15,7 +21,7 @@ const TaskList = () => {
       .finally(() => {
         setIsLoading(false);
       });
-  }, []);
+  }, [setTasks, tasks.length]);
 
   const handleTaskChange = (updatedTask: Task) => {
     setTasks((tasks) =>

@@ -1,6 +1,7 @@
 import { Route, Router, Switch } from "wouter";
 import TaskModule from "./modules/TaskModule";
 import { FC, ReactNode } from "react";
+import { RecoilRoot } from "recoil";
 
 type Props = {
   children: ReactNode;
@@ -16,17 +17,19 @@ const Layout: FC<Props> = ({ children }) => {
 
 const App = () => {
   return (
-    <Router>
-      <Layout>
-        <Switch>
-          <Route
-            path="/tasks"
-            component={TaskModule}
-            nest
-          />
-        </Switch>
-      </Layout>
-    </Router>
+    <RecoilRoot>
+      <Router>
+        <Layout>
+          <Switch>
+            <Route
+              path="/tasks"
+              component={TaskModule}
+              nest
+            />
+          </Switch>
+        </Layout>
+      </Router>
+    </RecoilRoot>
   );
 };
 
