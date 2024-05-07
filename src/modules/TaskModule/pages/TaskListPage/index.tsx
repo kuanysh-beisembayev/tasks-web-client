@@ -1,21 +1,26 @@
 import { Link } from "wouter";
 import TaskList from "../../widgets/TaskList";
+import HorizontalWrapper from "../../components/HorizontalWrapper";
 
 const TaskListPage = () => {
   return (
-    <div className="grow flex flex-col space-y-4">
-      <div className="prose">
-        <h2 className="m-0 text-center">Tasks</h2>
-      </div>
+    <div className="grow flex flex-col">
+      <HorizontalWrapper>
+        <div className="prose">
+          <h2 className="m-0 text-center">Tasks</h2>
+        </div>
+      </HorizontalWrapper>
       <div className="grow space-y-4 overflow-y-auto">
         <TaskList />
       </div>
-      <Link
-        to="/new"
-        className="btn btn-primary rounded-full"
-      >
-        Add New Task
-      </Link>
+      <HorizontalWrapper>
+        <Link
+          to="/new"
+          className="btn btn-primary btn-block rounded-full"
+        >
+          Add New Task
+        </Link>
+      </HorizontalWrapper>
     </div>
   );
 };

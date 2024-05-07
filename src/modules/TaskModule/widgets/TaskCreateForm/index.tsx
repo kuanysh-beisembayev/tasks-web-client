@@ -1,6 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import TaskApiService from "../../services/api";
 import { useBrowserLocation } from "wouter/use-browser-location";
+import HorizontalWrapper from "../../components/HorizontalWrapper";
 
 const TaskCreateForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -42,14 +43,16 @@ const TaskCreateForm = () => {
           onChange={handleChange}
         />
       </label>
-      <button
-        type="submit"
-        className="btn btn-primary rounded-full"
-        disabled={name.trim().length === 0}
-      >
-        Save
-        {isLoading && <span className="loading loading-spinner"></span>}
-      </button>
+      <HorizontalWrapper>
+        <button
+          type="submit"
+          className="btn btn-primary btn-block rounded-full"
+          disabled={name.trim().length === 0}
+        >
+          Save
+          {isLoading && <span className="loading loading-spinner"></span>}
+        </button>
+      </HorizontalWrapper>
     </form>
   );
 };

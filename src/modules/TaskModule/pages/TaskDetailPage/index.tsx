@@ -1,9 +1,9 @@
-import { Link } from "wouter";
+import TaskUpdateForm from "../../widgets/TaskUpdateForm";
 import HorizontalWrapper from "../../components/HorizontalWrapper";
-import TaskCreateForm from "../../widgets/TaskCreateForm";
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
+import { Link } from "wouter";
 
-const TaskCreatePage = () => {
+const TaskDetailPage = () => {
   return (
     <div className="grow flex flex-col">
       <HorizontalWrapper
@@ -20,9 +20,9 @@ const TaskCreatePage = () => {
           <h2 className="m-0 text-center">Add New Task</h2>
         </div>
       </HorizontalWrapper>
-      <TaskCreateForm />
+      <TaskUpdateForm />
     </div>
   );
 };
 
-export default TaskCreatePage;
+export default TaskDetailPage;

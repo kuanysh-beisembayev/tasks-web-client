@@ -8,7 +8,7 @@ type Props = {
 
 const Layout: FC<Props> = ({ children }) => {
   return (
-    <div className="max-w-[500px] p-4 mx-auto min-h-dvh flex flex-col">
+    <div className="max-w-[500px] px-4 mx-auto min-h-dvh flex flex-col">
       {children}
     </div>
   );
