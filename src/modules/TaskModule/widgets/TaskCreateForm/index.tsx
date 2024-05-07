@@ -4,6 +4,7 @@ import { useBrowserLocation } from "wouter/use-browser-location";
 import TaskForm from "../../components/TaskForm";
 import { NewTask } from "../../types";
 import { createNewTask } from "../../utils";
+import { toast } from "sonner";
 
 const TaskCreateForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -14,6 +15,7 @@ const TaskCreateForm = () => {
 
     TaskApiService.createTask(task)
       .then(() => {
+        toast.success("Task Saved");
         setLocation(`/tasks`);
       })
       .finally(() => {

@@ -41,7 +41,7 @@ const TaskForm: FC<Props> = ({ initialTask, isLoading, onSubmit }) => {
             {...register("status")}
           >
             <option value="new">New</option>
-            <option value="done">Completed</option>
+            <option value="completed">Completed</option>
           </select>
         </label>
       </div>

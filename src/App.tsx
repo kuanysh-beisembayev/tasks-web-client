@@ -1,19 +1,7 @@
 import { Route, Router, Switch } from "wouter";
 import TaskModule from "./modules/TaskModule";
-import { FC, ReactNode } from "react";
 import { RecoilRoot } from "recoil";
-
-type Props = {
-  children: ReactNode;
-};
-
-const Layout: FC<Props> = ({ children }) => {
-  return (
-    <div className="max-w-[500px] px-4 mx-auto min-h-dvh flex flex-col">
-      {children}
-    </div>
-  );
-};
+import Layout from "./modules/Shared/components/Layout";
 
 const App = () => {
   return (

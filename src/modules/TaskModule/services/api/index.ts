@@ -1,4 +1,4 @@
-import client from "../../../../services/api/client";
+import client from "../../../Shared/services/api/client";
 import { NewTask, Task } from "../../types";
 
 class TaskApiService {

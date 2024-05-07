@@ -30,7 +30,7 @@ const TaskList = () => {
   };
 
   const newTasks = tasks.filter((task) => task.status === "new");
-  const completedTasks = tasks.filter((task) => task.status === "done");
+  const completedTasks = tasks.filter((task) => task.status === "completed");
 
   if (isLoading) {
     return (

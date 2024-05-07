@@ -3,6 +3,7 @@ import { NewTask, Task } from "../../types";
 import TaskApiService from "../../services/api";
 import classNames from "classnames";
 import { useBrowserLocation } from "wouter/use-browser-location";
+import { toast } from "sonner";
 
 type Props = {
   task: Task;
@@ -19,10 +20,14 @@ const TaskItem: FC<Props> = ({ task, onChange }) => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const newTask: NewTask = {
       ...task,
-      status: event.target.checked ? "done" : "new",
+      status: event.target.checked ? "completed" : "new",
     };
     TaskApiService.updateTask(task.id, newTask).then((task) => {
       onChange(task);
+
+      if (task.status === "completed") {
+        toast.success("Task Completed");
+      }
     });
   };
 
@@ -33,7 +38,7 @@ const TaskItem: FC<Props> = ({ task, onChange }) => {
     >
       <h4
         className={classNames("m-0 grow truncate", {
-          "line-through": task.status === "done",
+          "line-through": task.status === "completed",
         })}
       >
         {task.name}
@@ -41,7 +46,7 @@ const TaskItem: FC<Props> = ({ task, onChange }) => {
       <input
         type="checkbox"
         className="checkbox checkbox-primary rounded-full"
-        checked={task.status === "done"}
+        checked={task.status === "completed"}
         onChange={handleChange}
         onClick={(event: MouseEvent) => event.stopPropagation()}
       />

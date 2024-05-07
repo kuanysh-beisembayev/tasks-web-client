@@ -4,6 +4,7 @@ import TaskApiService from "../../services/api";
 import { useParams } from "wouter";
 import TaskForm from "../../components/TaskForm";
 import { useBrowserLocation } from "wouter/use-browser-location";
+import { toast } from "sonner";
 
 const TaskUpdateForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -22,6 +23,7 @@ const TaskUpdateForm = () => {
 
     TaskApiService.updateTask((task as Task).id, newTask)
       .then(() => {
+        toast.success("Task Saved");
         setLocation("/tasks");
       })
       .finally(() => {
