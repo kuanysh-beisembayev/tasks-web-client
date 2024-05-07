@@ -1,11 +1,15 @@
-import { ChangeEvent, useEffect, useState } from "react";
-import { Task } from "../../types";
+import { useEffect, useState } from "react";
+import { NewTask, Task } from "../../types";
 import TaskApiService from "../../services/api";
 import { useParams } from "wouter";
+import TaskForm from "../../components/TaskForm";
+import { useBrowserLocation } from "wouter/use-browser-location";
 
 const TaskUpdateForm = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [task, setTask] = useState<Task | null>(null);
   const params = useParams();
+  const [, setLocation] = useBrowserLocation();
 
   useEffect(() => {
     TaskApiService.getTask(params.taskId as string).then((task) => {
@@ -13,36 +17,32 @@ const TaskUpdateForm = () => {
     });
   }, [params.taskId]);
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setTask((task) => ({ ...(task as Task), [name]: value }));
+  const handleSubmit = (newTask: NewTask) => {
+    setIsLoading(true);
+
+    TaskApiService.updateTask((task as Task).id, newTask)
+      .then(() => {
+        setLocation("/tasks");
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   if (!task) {
     return (
       <div className="flex justify-center">
-        <span className="loading loading-spinner"></span>
+        <span className="loading loading-spinner" />
       </div>
     );
   }
 
   return (
-    <form className="grow flex flex-col space-y-4">
-      <label className="form-control grow">
-        <div className="label">
-          <span className="label-text">Task name</span>
-        </div>
-        <input
-          type="text"
-          placeholder="Type here"
-          className="input input-bordered rounded-full"
-          autoFocus
-          value={task.name}
-          name="name"
-          onChange={handleChange}
-        />
-      </label>
-    </form>
+    <TaskForm
+      initialTask={task}
+      isLoading={isLoading}
+      onSubmit={handleSubmit}
+    />
   );
 };
 

@@ -1,5 +1,5 @@
 import { ChangeEvent, FC, MouseEvent } from "react";
-import { Task } from "../../types";
+import { NewTask, Task } from "../../types";
 import TaskApiService from "../../services/api";
 import classNames from "classnames";
 import { useBrowserLocation } from "wouter/use-browser-location";
@@ -17,10 +17,11 @@ const TaskItem: FC<Props> = ({ task, onChange }) => {
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    TaskApiService.updateTask({
+    const newTask: NewTask = {
       ...task,
       status: event.target.checked ? "done" : "new",
-    }).then((task) => {
+    };
+    TaskApiService.updateTask(task.id, newTask).then((task) => {
       onChange(task);
     });
   };

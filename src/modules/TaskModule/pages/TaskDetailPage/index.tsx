@@ -17,7 +17,7 @@ const TaskDetailPage = () => {
         }
       >
         <div className="prose">
-          <h2 className="m-0 text-center">Add New Task</h2>
+          <h2 className="m-0 text-center">Edit Task</h2>
         </div>
       </HorizontalWrapper>
       <TaskUpdateForm />

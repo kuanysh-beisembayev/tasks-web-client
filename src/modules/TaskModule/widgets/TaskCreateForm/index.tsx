@@ -1,22 +1,18 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { useState } from "react";
 import TaskApiService from "../../services/api";
 import { useBrowserLocation } from "wouter/use-browser-location";
-import HorizontalWrapper from "../../components/HorizontalWrapper";
+import TaskForm from "../../components/TaskForm";
+import { NewTask } from "../../types";
+import { createNewTask } from "../../utils";
 
 const TaskCreateForm = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [name, setName] = useState("");
   const [, setLocation] = useBrowserLocation();
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setName(event.target.value.trimStart());
-  };
-
-  const handleSubmit = (event: FormEvent) => {
-    event.preventDefault();
-
+  const handleSubmit = (task: NewTask) => {
     setIsLoading(true);
-    TaskApiService.createTask(name.trimEnd())
+
+    TaskApiService.createTask(task)
       .then(() => {
         setLocation(`/tasks`);
       })
@@ -26,34 +22,11 @@ const TaskCreateForm = () => {
   };
 
   return (
-    <form
-      className="grow flex flex-col space-y-4"
+    <TaskForm
+      initialTask={createNewTask()}
+      isLoading={isLoading}
       onSubmit={handleSubmit}
-    >
-      <label className="form-control grow">
-        <div className="label">
-          <span className="label-text">Task name</span>
-        </div>
-        <input
-          type="text"
-          placeholder="Type here"
-          className="input input-bordered rounded-full"
-          autoFocus
-          value={name}
-          onChange={handleChange}
-        />
-      </label>
-      <HorizontalWrapper>
-        <button
-          type="submit"
-          className="btn btn-primary btn-block rounded-full"
-          disabled={name.trim().length === 0}
-        >
-          Save
-          {isLoading && <span className="loading loading-spinner"></span>}
-        </button>
-      </HorizontalWrapper>
-    </form>
+    />
   );
 };
 

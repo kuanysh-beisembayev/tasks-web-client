@@ -1,5 +1,5 @@
 import client from "../../../../services/api/client";
-import { Task } from "../../types";
+import { NewTask, Task } from "../../types";
 
 class TaskApiService {
   static async getTasks() {
@@ -7,13 +7,13 @@ class TaskApiService {
     return response.data;
   }
 
-  static async updateTask(task: Task) {
-    const response = await client.put<Task>(`/tasks/${task.id}`, task);
+  static async updateTask(taskId: string, task: NewTask) {
+    const response = await client.put<Task>(`/tasks/${taskId}`, task);
     return response.data;
   }
 
-  static async createTask(name: string) {
-    const response = await client.post<Task>("/tasks", { name });
+  static async createTask(task: NewTask) {
+    const response = await client.post<Task>("/tasks", task);
     return response.data;
   }
 
