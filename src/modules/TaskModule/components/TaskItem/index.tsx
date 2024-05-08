@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import { useRecoilValue } from "recoil";
 import { authState } from "../../../AuthModule/store";
 import { Auth } from "../../../AuthModule/types";
+import { formatDateString } from "../../utils";
 
 type Props = {
   task: Task;
@@ -39,16 +40,24 @@ const TaskItem: FC<Props> = ({ task, onChange }) => {
 
   return (
     <div
-      className="px-4 py-6 flex items-center space-x-4 border-b last:border-b-0 prose cursor-pointer"
+      className="p-4 flex items-center space-x-4 border-b last:border-b-0 cursor-pointer"
       onClick={handleClick}
     >
-      <h4
-        className={classNames("m-0 grow truncate", {
-          "line-through": task.status === "completed",
-        })}
-      >
-        {task.name}
-      </h4>
+      <div className="grow flex flex-col space-y-2">
+        <h4
+          className={classNames(
+            "m-0 truncate text-base font-medium leading-none",
+            {
+              "line-through": task.status === "completed",
+            },
+          )}
+        >
+          {task.name}
+        </h4>
+        <span className="text-xs leading-none text-neutral-500">
+          {formatDateString(task.created_at)}
+        </span>
+      </div>
       <input
         type="checkbox"
         className="checkbox checkbox-primary rounded-full"
