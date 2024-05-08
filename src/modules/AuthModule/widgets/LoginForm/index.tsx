@@ -5,6 +5,7 @@ import AuthApiService from "../../services/api";
 import { useSetRecoilState } from "recoil";
 import { authState } from "../../store";
 import { useBrowserLocation } from "wouter/use-browser-location";
+import AuthCacheService from "../../services/cache";
 
 type LoginData = {
   username: string;
@@ -22,7 +23,9 @@ const LoginForm = () => {
 
     AuthApiService.getTokens(data.username, data.password)
       .then((accessToken: string) => {
-        setAuth({ accessToken });
+        const auth = { accessToken };
+        setAuth(auth);
+        AuthCacheService.saveAuth(auth);
         setLocation("/tasks");
       })
       .finally(() => {
