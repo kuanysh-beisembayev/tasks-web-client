@@ -37,7 +37,7 @@ const TaskForm: FC<Props> = ({ initialTask, isLoading, onSubmit }) => {
             <span className="label-text">Task Description</span>
           </div>
           <textarea
-            className="textarea textarea-bordered rounded-xl resize-none"
+            className="textarea textarea-bordered rounded-xl resize-none text-base"
             placeholder="Type here"
             rows={3}
             {...register("description")}
