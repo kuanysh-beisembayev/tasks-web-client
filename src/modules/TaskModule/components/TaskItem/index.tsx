@@ -4,6 +4,9 @@ import TaskApiService from "../../services/api";
 import classNames from "classnames";
 import { useBrowserLocation } from "wouter/use-browser-location";
 import { toast } from "sonner";
+import { useRecoilValue } from "recoil";
+import { authState } from "../../../AuthModule/store";
+import { Auth } from "../../../AuthModule/types";
 
 type Props = {
   task: Task;
@@ -12,6 +15,7 @@ type Props = {
 
 const TaskItem: FC<Props> = ({ task, onChange }) => {
   const [, setLocation] = useBrowserLocation();
+  const auth = useRecoilValue(authState) as Auth;
 
   const handleClick = () => {
     setLocation(`/tasks/${task.id}`);
@@ -22,13 +26,15 @@ const TaskItem: FC<Props> = ({ task, onChange }) => {
       ...task,
       status: event.target.checked ? "completed" : "new",
     };
-    TaskApiService.updateTask(task.id, newTask).then((task) => {
-      onChange(task);
+    TaskApiService.updateTask(auth.accessToken, task.id, newTask).then(
+      (task) => {
+        onChange(task);
 
-      if (task.status === "completed") {
-        toast.success("Task Completed");
-      }
-    });
+        if (task.status === "completed") {
+          toast.success("Task Completed");
+        }
+      },
+    );
   };
 
   return (

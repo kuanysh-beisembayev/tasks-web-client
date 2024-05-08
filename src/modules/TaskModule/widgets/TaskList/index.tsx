@@ -2,26 +2,29 @@ import { useEffect, useState } from "react";
 import { Task } from "../../types";
 import TaskApiService from "../../services/api";
 import TaskGroup from "../../components/TaskGroup";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { tasksState } from "../../store";
+import { authState } from "../../../AuthModule/store";
+import { Auth } from "../../../AuthModule/types";
 
 const TaskList = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [tasks, setTasks] = useRecoilState(tasksState);
+  const auth = useRecoilValue(authState) as Auth;
 
   useEffect(() => {
     if (tasks.length === 0) {
       setIsLoading(true);
     }
 
-    TaskApiService.getTasks()
+    TaskApiService.getTasks(auth.accessToken)
       .then((tasks) => {
         setTasks(tasks);
       })
       .finally(() => {
         setIsLoading(false);
       });
-  }, [setTasks, tasks.length]);
+  }, [auth.accessToken, setTasks, tasks.length]);
 
   const handleTaskChange = (updatedTask: Task) => {
     setTasks((tasks) =>

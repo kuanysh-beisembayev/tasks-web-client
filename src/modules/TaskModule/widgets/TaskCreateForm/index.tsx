@@ -5,15 +5,19 @@ import TaskForm from "../../components/TaskForm";
 import { NewTask } from "../../types";
 import { createNewTask } from "../../utils";
 import { toast } from "sonner";
+import { useRecoilValue } from "recoil";
+import { authState } from "../../../AuthModule/store";
+import { Auth } from "../../../AuthModule/types";
 
 const TaskCreateForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [, setLocation] = useBrowserLocation();
+  const auth = useRecoilValue(authState) as Auth;
 
   const handleSubmit = (task: NewTask) => {
     setIsLoading(true);
 
-    TaskApiService.createTask(task)
+    TaskApiService.createTask(auth.accessToken, task)
       .then(() => {
         toast.success("Task Saved");
         setLocation(`/tasks`);

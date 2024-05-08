@@ -5,23 +5,29 @@ import { useParams } from "wouter";
 import TaskForm from "../../components/TaskForm";
 import { useBrowserLocation } from "wouter/use-browser-location";
 import { toast } from "sonner";
+import { useRecoilValue } from "recoil";
+import { authState } from "../../../AuthModule/store";
+import { Auth } from "../../../AuthModule/types";
 
 const TaskUpdateForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [task, setTask] = useState<Task | null>(null);
   const params = useParams();
   const [, setLocation] = useBrowserLocation();
+  const auth = useRecoilValue(authState) as Auth;
 
   useEffect(() => {
-    TaskApiService.getTask(params.taskId as string).then((task) => {
-      setTask(task);
-    });
-  }, [params.taskId]);
+    TaskApiService.getTask(auth.accessToken, params.taskId as string).then(
+      (task) => {
+        setTask(task);
+      },
+    );
+  }, [auth.accessToken, params.taskId]);
 
   const handleSubmit = (newTask: NewTask) => {
     setIsLoading(true);
 
-    TaskApiService.updateTask((task as Task).id, newTask)
+    TaskApiService.updateTask(auth.accessToken, (task as Task).id, newTask)
       .then(() => {
         toast.success("Task Saved");
         setLocation("/tasks");
