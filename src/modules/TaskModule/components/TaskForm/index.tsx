@@ -22,27 +22,26 @@ const TaskForm: FC<Props> = ({ initialTask, isLoading, onSubmit }) => {
       <div className="grow space-y-4">
         <label className="form-control">
           <div className="label">
-            <span className="label-text">Task name</span>
+            <span className="label-text">Task Name</span>
           </div>
           <input
             type="text"
             placeholder="Type here"
-            className="input input-bordered rounded-full"
+            className="input input-bordered rounded-xl"
             autoFocus
             {...register("name")}
           />
         </label>
         <label className="form-control">
           <div className="label">
-            <span className="label-text">Task status</span>
+            <span className="label-text">Task Description</span>
           </div>
-          <select
-            className="select select-bordered rounded-full"
-            {...register("status")}
-          >
-            <option value="new">New</option>
-            <option value="completed">Completed</option>
-          </select>
+          <textarea
+            className="textarea textarea-bordered rounded-xl resize-none"
+            placeholder="Type here"
+            rows={3}
+            {...register("description")}
+          />
         </label>
       </div>
       <HorizontalWrapper>
@@ -50,7 +49,7 @@ const TaskForm: FC<Props> = ({ initialTask, isLoading, onSubmit }) => {
           type="submit"
           className="btn btn-primary btn-block rounded-full"
         >
-          Save
+          Save Task
           {isLoading && <span className="loading loading-spinner" />}
         </button>
       </HorizontalWrapper>
