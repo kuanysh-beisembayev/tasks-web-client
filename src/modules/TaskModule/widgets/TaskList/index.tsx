@@ -24,7 +24,7 @@ const TaskList = () => {
       .finally(() => {
         setIsLoading(false);
       });
-  }, [auth.accessToken, setTasks, tasks.length]);
+  }, [auth.accessToken, setTasks]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleTaskChange = (updatedTask: Task) => {
     setTasks((tasks) =>
