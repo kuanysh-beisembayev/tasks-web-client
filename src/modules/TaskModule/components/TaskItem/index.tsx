@@ -19,7 +19,7 @@ const TaskItem: FC<Props> = ({ task, onChange }) => {
   const auth = useRecoilValue(authState) as Auth;
 
   const handleClick = () => {
-    setLocation(`/tasks/${task.id}`);
+    setLocation(`/task/${task.id}`);
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {

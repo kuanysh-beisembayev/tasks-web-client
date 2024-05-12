@@ -15,7 +15,7 @@ const TaskListPage = () => {
       </div>
       <HorizontalWrapper>
         <Link
-          to="/new"
+          to="/task/new"
           className="btn btn-primary btn-block rounded-full"
         >
           Add New Task

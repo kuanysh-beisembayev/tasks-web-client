@@ -26,7 +26,7 @@ const LoginForm = () => {
         const auth = { accessToken };
         setAuth(auth);
         AuthCacheService.saveAuth(auth);
-        setLocation("/tasks");
+        setLocation("/");
       })
       .finally(() => {
         setIsLoading(false);

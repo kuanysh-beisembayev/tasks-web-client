@@ -16,7 +16,7 @@ const App = () => {
           />
           <AuthRequired>
             <Route
-              path="/tasks"
+              path="/"
               component={TaskModule}
               nest
             />

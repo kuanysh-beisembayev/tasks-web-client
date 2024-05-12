@@ -20,7 +20,7 @@ const TaskCreateForm = () => {
     TaskApiService.createTask(auth.accessToken, task)
       .then(() => {
         toast.success("Task Saved");
-        setLocation(`/tasks`);
+        setLocation("/");
       })
       .finally(() => {
         setIsLoading(false);

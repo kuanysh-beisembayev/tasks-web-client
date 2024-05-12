@@ -11,11 +11,11 @@ const TaskModule = () => {
         component={TaskListPage}
       />
       <Route
-        path="/new"
+        path="/task/new"
         component={TaskCreatePage}
       />
       <Route
-        path="/:taskId"
+        path="/task/:taskId"
         component={TaskDetailPage}
       />
     </Switch>

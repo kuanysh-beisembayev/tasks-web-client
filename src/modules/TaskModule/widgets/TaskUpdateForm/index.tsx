@@ -30,7 +30,7 @@ const TaskUpdateForm = () => {
     TaskApiService.updateTask(auth.accessToken, (task as Task).id, newTask)
       .then(() => {
         toast.success("Task Saved");
-        setLocation("/tasks");
+        setLocation("/");
       })
       .finally(() => {
         setIsLoading(false);
