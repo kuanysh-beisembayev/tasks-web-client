@@ -40,13 +40,13 @@ const TaskItem: FC<Props> = ({ task, onChange }) => {
 
   return (
     <div
-      className="p-4 flex items-center space-x-4 border-b last:border-b-0 cursor-pointer"
+      className="p-4 flex flex-col space-y-2 border-b last:border-b-0 cursor-pointer"
       onClick={handleClick}
     >
-      <div className="grow flex flex-col space-y-2">
+      <div className="flex items-center space-x-4">
         <h4
           className={classNames(
-            "m-0 truncate text-base font-medium leading-none",
+            "grow m-0 truncate text-base font-medium leading-none",
             {
               "line-through": task.status === "completed",
             },
@@ -54,17 +54,17 @@ const TaskItem: FC<Props> = ({ task, onChange }) => {
         >
           {task.name}
         </h4>
-        <span className="text-xs leading-none text-neutral-500">
-          {formatDateString(task.created_at)}
-        </span>
+        <input
+          type="checkbox"
+          className="checkbox checkbox-primary rounded-full"
+          checked={task.status === "completed"}
+          onChange={handleChange}
+          onClick={(event: MouseEvent) => event.stopPropagation()}
+        />
       </div>
-      <input
-        type="checkbox"
-        className="checkbox checkbox-primary rounded-full"
-        checked={task.status === "completed"}
-        onChange={handleChange}
-        onClick={(event: MouseEvent) => event.stopPropagation()}
-      />
+      <span className="text-xs leading-none text-neutral-500">
+        {formatDateString(task.created_at)}
+      </span>
     </div>
   );
 };
