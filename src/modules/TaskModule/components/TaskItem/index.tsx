@@ -3,7 +3,6 @@ import { NewTask, Task } from "../../types";
 import TaskApiService from "../../services/api";
 import classNames from "classnames";
 import { useBrowserLocation } from "wouter/use-browser-location";
-import { toast } from "sonner";
 import { useRecoilValue } from "recoil";
 import { authState } from "../../../AuthModule/store";
 import { Auth } from "../../../AuthModule/types";
@@ -30,10 +29,6 @@ const TaskItem: FC<Props> = ({ task, onChange }) => {
     TaskApiService.updateTask(auth.accessToken, task.id, newTask).then(
       (task) => {
         onChange(task);
-
-        if (task.status === "completed") {
-          toast.success("Task Completed");
-        }
       },
     );
   };

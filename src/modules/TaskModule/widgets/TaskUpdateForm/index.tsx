@@ -4,7 +4,6 @@ import TaskApiService from "../../services/api";
 import { useParams } from "wouter";
 import TaskForm from "../../components/TaskForm";
 import { useBrowserLocation } from "wouter/use-browser-location";
-import { toast } from "sonner";
 import { useRecoilValue } from "recoil";
 import { authState } from "../../../AuthModule/store";
 import { Auth } from "../../../AuthModule/types";
@@ -29,7 +28,6 @@ const TaskUpdateForm = () => {
 
     TaskApiService.updateTask(auth.accessToken, (task as Task).id, newTask)
       .then(() => {
-        toast.success("Task Saved");
         setLocation("/");
       })
       .finally(() => {

@@ -1,5 +1,4 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
-import { toast } from "sonner";
 import AuthCacheService from "../../../AuthModule/services/cache";
 
 const client = axios.create({
@@ -14,7 +13,6 @@ client.interceptors.response.use(
       window.location.replace("/auth/login");
     }
 
-    toast.error(error.message);
     return Promise.reject(error);
   },
 );
