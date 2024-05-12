@@ -1,14 +1,17 @@
 import { Route, Switch } from "wouter";
 import LoginPage from "./pages/LoginPage";
+import Layout from "../Shared/components/Layout";
 
 const AuthModule = () => {
   return (
-    <Switch>
-      <Route
-        path="/login"
-        component={LoginPage}
-      />
-    </Switch>
+    <Layout>
+      <Switch>
+        <Route
+          path="/login"
+          component={LoginPage}
+        />
+      </Switch>
+    </Layout>
   );
 };
 

@@ -1,28 +1,31 @@
 import { Route, Router, Switch } from "wouter";
 import TaskModule from "./modules/TaskModule";
-import Layout from "./modules/Shared/components/Layout";
 import AuthModule from "./modules/AuthModule";
 import AuthRequired from "./modules/AuthModule/components/AuthRequired";
+import ProfileModule from "./modules/ProfileModule";
 
 const App = () => {
   return (
     <Router>
-      <Layout>
-        <Switch>
+      <Switch>
+        <Route
+          path="/auth"
+          component={AuthModule}
+          nest
+        />
+        <AuthRequired>
           <Route
-            path="/auth"
-            component={AuthModule}
+            path="/profile"
+            component={ProfileModule}
             nest
           />
-          <AuthRequired>
-            <Route
-              path="/"
-              component={TaskModule}
-              nest
-            />
-          </AuthRequired>
-        </Switch>
-      </Layout>
+          <Route
+            path="/"
+            component={TaskModule}
+            nest
+          />
+        </AuthRequired>
+      </Switch>
     </Router>
   );
 };
