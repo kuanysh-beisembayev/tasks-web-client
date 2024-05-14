@@ -2,6 +2,7 @@ import { Link } from "wouter";
 import HorizontalWrapper from "../../components/HorizontalWrapper";
 import TaskCreateForm from "../../widgets/TaskCreateForm";
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
+import Heading from "../../../Shared/components/Heading";
 
 const TaskCreatePage = () => {
   return (
@@ -16,9 +17,7 @@ const TaskCreatePage = () => {
           </Link>
         }
       >
-        <div className="prose">
-          <h2 className="m-0 text-center">Add New Task</h2>
-        </div>
+        <Heading>Add New Task</Heading>
       </HorizontalWrapper>
       <TaskCreateForm />
     </div>

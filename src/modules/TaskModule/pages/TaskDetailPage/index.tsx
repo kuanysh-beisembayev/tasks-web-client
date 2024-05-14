@@ -2,6 +2,7 @@ import TaskUpdateForm from "../../widgets/TaskUpdateForm";
 import HorizontalWrapper from "../../components/HorizontalWrapper";
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import { Link } from "wouter";
+import Heading from "../../../Shared/components/Heading";
 
 const TaskDetailPage = () => {
   return (
@@ -16,9 +17,7 @@ const TaskDetailPage = () => {
           </Link>
         }
       >
-        <div className="prose">
-          <h2 className="m-0 text-center">Edit Task</h2>
-        </div>
+        <Heading>Edit Task</Heading>
       </HorizontalWrapper>
       <TaskUpdateForm />
     </div>

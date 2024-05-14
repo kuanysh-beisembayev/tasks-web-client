@@ -3,6 +3,7 @@ import AuthCacheService from "../../../AuthModule/services/cache";
 import HorizontalWrapper from "../../../TaskModule/components/HorizontalWrapper";
 import { authState } from "../../../AuthModule/store";
 import { useBrowserLocation } from "wouter/use-browser-location";
+import Heading from "../../../Shared/components/Heading";
 
 const MyProfilePage = () => {
   const setAuth = useSetRecoilState(authState);
@@ -17,9 +18,7 @@ const MyProfilePage = () => {
   return (
     <div className="grow flex flex-col justify-between">
       <HorizontalWrapper>
-        <div className="prose">
-          <h2 className="m-0 text-center">My Profile</h2>
-        </div>
+        <Heading>My Profile</Heading>
       </HorizontalWrapper>
       <HorizontalWrapper>
         <button

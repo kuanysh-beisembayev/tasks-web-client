@@ -53,9 +53,7 @@ const TaskList = () => {
       )}
       {completedTasks.length > 0 && (
         <>
-          <div className="prose">
-            <h3 className="m-0">Completed</h3>
-          </div>
+          <h3 className="font-semibold leading-none text-sm">Completed</h3>
           <TaskGroup
             tasks={completedTasks}
             onTaskChange={handleTaskChange}

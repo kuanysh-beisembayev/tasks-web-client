@@ -35,17 +35,14 @@ const TaskItem: FC<Props> = ({ task, onChange }) => {
 
   return (
     <div
-      className="p-4 flex flex-col space-y-2 border-b last:border-b-0 cursor-pointer"
+      className="p-2 flex flex-col space-y-1 border-b last:border-b-0 cursor-pointer"
       onClick={handleClick}
     >
       <div className="flex items-center space-x-4">
         <h4
-          className={classNames(
-            "grow m-0 truncate text-base font-medium leading-none",
-            {
-              "line-through": task.status === "completed",
-            },
-          )}
+          className={classNames("grow m-0 truncate text-sm leading-none", {
+            "line-through": task.status === "completed",
+          })}
         >
           {task.name}
         </h4>
