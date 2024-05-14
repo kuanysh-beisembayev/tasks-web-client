@@ -10,7 +10,6 @@ export const createNewTask = (): NewTask => {
   return {
     name: "",
     description: "",
-    status: "new",
   };
 };
 
