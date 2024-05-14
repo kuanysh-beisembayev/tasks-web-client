@@ -6,6 +6,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { tasksState } from "../../store";
 import { authState } from "../../../AuthModule/store";
 import { Auth } from "../../../AuthModule/types";
+import { compareAsc, parseISO } from "date-fns";
 
 const TaskList = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -32,8 +33,18 @@ const TaskList = () => {
     );
   };
 
-  const newTasks = tasks.filter((task) => task.completed_at === null);
-  const completedTasks = tasks.filter((task) => task.completed_at !== null);
+  const newTasks = tasks
+    .filter((task) => task.completed_at === null)
+    .sort((a, b) => compareAsc(parseISO(a.created_at), parseISO(b.created_at)));
+
+  const completedTasks = tasks
+    .filter((task) => task.completed_at !== null)
+    .sort((a, b) =>
+      compareAsc(
+        parseISO(b.completed_at as string),
+        parseISO(a.completed_at as string),
+      ),
+    );
 
   if (isLoading) {
     return (

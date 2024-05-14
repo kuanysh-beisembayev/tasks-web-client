@@ -57,7 +57,9 @@ const TaskItem: FC<Props> = ({ task, onChange }) => {
         />
       </div>
       <span className="text-xs leading-none text-neutral-500">
-        {formatDateString(task.created_at)}
+        {isCompleted
+          ? `Completed ${formatDateString(task.completed_at as string)}`
+          : `Created ${formatDateString(task.created_at)}`}
       </span>
     </div>
   );
