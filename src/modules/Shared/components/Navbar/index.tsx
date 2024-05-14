@@ -11,7 +11,7 @@ const Navbar = () => {
   const [location, setLocation] = useBrowserLocation();
 
   return (
-    <div className="border-t py-2 flex justify-around">
+    <div className="border-t py-1 flex justify-around">
       {MENU_ITEMS.map((menuItem, index) => (
         <button
           key={index}
@@ -20,8 +20,8 @@ const Navbar = () => {
           })}
           onClick={() => setLocation(menuItem.location)}
         >
-          {<menuItem.icon className="size-5" />}
-          <span className="leading-none text-sm">{menuItem.text}</span>
+          {<menuItem.icon className="size-4" />}
+          <span className="leading-none text-xs">{menuItem.text}</span>
         </button>
       ))}
     </div>
