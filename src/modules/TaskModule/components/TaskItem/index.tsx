@@ -1,5 +1,5 @@
 import { ChangeEvent, FC, MouseEvent } from "react";
-import { NewTask, Task } from "../../types";
+import { Task } from "../../types";
 import TaskApiService from "../../services/api";
 import classNames from "classnames";
 import { useBrowserLocation } from "wouter/use-browser-location";
@@ -22,16 +22,18 @@ const TaskItem: FC<Props> = ({ task, onChange }) => {
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const newTask: NewTask = {
-      ...task,
-      status: event.target.checked ? "completed" : "new",
-    };
-    TaskApiService.updateTask(auth.accessToken, task.id, newTask).then(
-      (task) => {
-        onChange(task);
-      },
-    );
+    const isCompleted = event.target.checked;
+
+    TaskApiService.updateTaskStatus(
+      auth.accessToken,
+      task.id,
+      isCompleted,
+    ).then((task) => {
+      onChange(task);
+    });
   };
+
+  const isCompleted = task.completed_at !== null;
 
   return (
     <div
@@ -41,7 +43,7 @@ const TaskItem: FC<Props> = ({ task, onChange }) => {
       <div className="flex items-start space-x-4">
         <h4
           className={classNames("grow m-0 truncate text-sm leading-none", {
-            "line-through": task.status === "completed",
+            "line-through": isCompleted,
           })}
         >
           {task.name}
@@ -49,7 +51,7 @@ const TaskItem: FC<Props> = ({ task, onChange }) => {
         <input
           type="checkbox"
           className="checkbox checkbox-primary rounded-full"
-          checked={task.status === "completed"}
+          checked={isCompleted}
           onChange={handleChange}
           onClick={(event: MouseEvent) => event.stopPropagation()}
         />

@@ -32,13 +32,13 @@ const TaskList = () => {
     );
   };
 
-  const newTasks = tasks.filter((task) => task.status === "new");
-  const completedTasks = tasks.filter((task) => task.status === "completed");
+  const newTasks = tasks.filter((task) => task.completed_at === null);
+  const completedTasks = tasks.filter((task) => task.completed_at !== null);
 
   if (isLoading) {
     return (
       <div className="flex justify-center">
-        <span className="loading loading-spinner"></span>
+        <span className="loading loading-spinner" />
       </div>
     );
   }
