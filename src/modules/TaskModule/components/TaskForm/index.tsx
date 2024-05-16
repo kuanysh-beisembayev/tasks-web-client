@@ -43,6 +43,16 @@ const TaskForm: FC<Props> = ({ initialTask, isLoading, onSubmit }) => {
             {...register("description")}
           />
         </label>
+        <div className="form-control">
+          <label className="label cursor-pointer">
+            <span className="label-text">Is Task Important</span>
+            <input
+              type="checkbox"
+              className="toggle"
+              {...register("is_important")}
+            />
+          </label>
+        </div>
       </div>
       <HorizontalWrapper>
         <button
