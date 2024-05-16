@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { NewTask } from "../../types";
-import HorizontalWrapper from "../HorizontalWrapper";
+import HorizontalWrapper from "../../../Shared/components/HorizontalWrapper";
 import { useForm } from "react-hook-form";
 
 type Props = {

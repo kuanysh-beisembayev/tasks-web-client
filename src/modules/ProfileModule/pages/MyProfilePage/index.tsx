@@ -1,9 +1,9 @@
 import { useSetRecoilState } from "recoil";
 import AuthCacheService from "../../../AuthModule/services/cache";
-import HorizontalWrapper from "../../../TaskModule/components/HorizontalWrapper";
 import { authState } from "../../../AuthModule/store";
 import { useBrowserLocation } from "wouter/use-browser-location";
 import Heading from "../../../Shared/components/Heading";
+import HorizontalWrapper from "../../../Shared/components/HorizontalWrapper";
 
 const MyProfilePage = () => {
   const setAuth = useSetRecoilState(authState);

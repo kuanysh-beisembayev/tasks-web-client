@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import HorizontalWrapper from "../../../TaskModule/components/HorizontalWrapper";
+import HorizontalWrapper from "../../../Shared/components/HorizontalWrapper";
 import { useState } from "react";
 import AuthApiService from "../../services/api";
 import { useSetRecoilState } from "recoil";

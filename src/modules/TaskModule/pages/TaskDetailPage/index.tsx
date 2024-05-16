@@ -1,8 +1,8 @@
 import TaskUpdateForm from "../../widgets/TaskUpdateForm";
-import HorizontalWrapper from "../../components/HorizontalWrapper";
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import { Link } from "wouter";
 import Heading from "../../../Shared/components/Heading";
+import HorizontalWrapper from "../../../Shared/components/HorizontalWrapper";
 
 const TaskDetailPage = () => {
   return (
