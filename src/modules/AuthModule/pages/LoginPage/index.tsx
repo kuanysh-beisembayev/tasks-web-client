@@ -1,5 +1,5 @@
 import Heading from "../../../Shared/components/Heading";
-import HorizontalWrapper from "../../../TaskModule/components/HorizontalWrapper";
+import HorizontalWrapper from "../../../Shared/components/HorizontalWrapper";
 import LoginForm from "../../widgets/LoginForm";
 
 const LoginPage = () => {

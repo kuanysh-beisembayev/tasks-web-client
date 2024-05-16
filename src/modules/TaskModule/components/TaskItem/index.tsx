@@ -37,17 +37,10 @@ const TaskItem: FC<Props> = ({ task, onChange }) => {
 
   return (
     <div
-      className="p-2 flex flex-col space-y-1 border-b last:border-b-0 cursor-pointer"
+      className="p-2 flex space-x-2 border-b last:border-b-0 cursor-pointer"
       onClick={handleClick}
     >
-      <div className="flex items-start space-x-4">
-        <h4
-          className={classNames("grow m-0 truncate text-sm leading-none", {
-            "line-through": isCompleted,
-          })}
-        >
-          {task.name}
-        </h4>
+      <div className="flex items-center">
         <input
           type="checkbox"
           className="checkbox checkbox-primary rounded-full"
@@ -56,11 +49,20 @@ const TaskItem: FC<Props> = ({ task, onChange }) => {
           onClick={(event: MouseEvent) => event.stopPropagation()}
         />
       </div>
-      <span className="text-xs leading-none text-neutral-500">
-        {isCompleted
-          ? `Completed ${formatDateString(task.completed_at as string)}`
-          : `Created ${formatDateString(task.created_at)}`}
-      </span>
+      <div className="grow min-w-0 flex flex-col space-y-2">
+        <h4
+          className={classNames("truncate text-sm leading-none", {
+            "line-through": isCompleted,
+          })}
+        >
+          {task.name}
+        </h4>
+        <span className="text-xs leading-none text-neutral-500 text-right">
+          {isCompleted
+            ? `Completed ${formatDateString(task.completed_at as string)}`
+            : `Created ${formatDateString(task.created_at)}`}
+        </span>
+      </div>
     </div>
   );
 };

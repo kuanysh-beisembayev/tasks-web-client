@@ -1,8 +1,8 @@
 import { Link } from "wouter";
-import HorizontalWrapper from "../../components/HorizontalWrapper";
 import TaskCreateForm from "../../widgets/TaskCreateForm";
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import Heading from "../../../Shared/components/Heading";
+import HorizontalWrapper from "../../../Shared/components/HorizontalWrapper";
 
 const TaskCreatePage = () => {
   return (

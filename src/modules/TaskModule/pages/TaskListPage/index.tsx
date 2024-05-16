@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import TaskList from "../../widgets/TaskList";
-import HorizontalWrapper from "../../components/HorizontalWrapper";
 import Heading from "../../../Shared/components/Heading";
+import HorizontalWrapper from "../../../Shared/components/HorizontalWrapper";
 
 const TaskListPage = () => {
   return (
