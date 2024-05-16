@@ -63,28 +63,6 @@ const TaskItem: FC<Props> = ({ task, onChange }) => {
             : `Created ${formatDateString(task.created_at)}`}
         </span>
       </div>
-
-      {/* <div className="flex items-start space-x-4">
-        <input
-          type="checkbox"
-          className="checkbox checkbox-primary rounded-full"
-          checked={isCompleted}
-          onChange={handleChange}
-          onClick={(event: MouseEvent) => event.stopPropagation()}
-        />
-        <h4
-          className={classNames("grow m-0 truncate text-sm leading-none", {
-            "line-through": isCompleted,
-          })}
-        >
-          {task.name}
-        </h4>
-      </div>
-      <span className="text-xs leading-none text-neutral-500 text-right">
-        {isCompleted
-          ? `Completed ${formatDateString(task.completed_at as string)}`
-          : `Created ${formatDateString(task.created_at)}`}
-      </span> */}
     </div>
   );
 };
