@@ -35,7 +35,24 @@ const TaskList = () => {
 
   const newTasks = tasks
     .filter((task) => task.completed_at === null)
-    .sort((a, b) => compareAsc(parseISO(a.created_at), parseISO(b.created_at)));
+    .sort((a, b) => {
+      if (
+        (a.is_important && b.is_important) ||
+        (!a.is_important && !b.is_important)
+      ) {
+        return compareAsc(parseISO(a.created_at), parseISO(b.created_at));
+      }
+
+      if (a.is_important) {
+        return -1;
+      }
+
+      if (b.is_important) {
+        return 1;
+      }
+
+      return 0;
+    });
 
   const completedTasks = tasks
     .filter((task) => task.completed_at !== null)
