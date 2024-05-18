@@ -45,7 +45,7 @@ const TaskForm: FC<Props> = ({ initialTask, isLoading, onSubmit }) => {
         </label>
         <div className="form-control">
           <label className="label cursor-pointer">
-            <span className="label-text">Is Task Important</span>
+            <span className="label-text">Important Task</span>
             <input
               type="checkbox"
               className="toggle"
