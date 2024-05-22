@@ -39,7 +39,7 @@ const TaskList = () => {
   }
 
   return (
-    <div className="space-y-2 max-h-[10vh]">
+    <div className="space-y-3 max-h-[10vh]">
       {tasks.map((task) => (
         <TaskItem
           key={task.id}

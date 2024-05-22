@@ -39,7 +39,7 @@ const TaskItem: FC<Props> = ({ task, onChange }) => {
 
   return (
     <div
-      className={classNames("p-2 flex space-x-2 border rounded-lg", {
+      className={classNames("p-3 flex space-x-2 border rounded-xl", {
         "cursor-pointer": !isCompleted,
       })}
       onClick={handleClick}
