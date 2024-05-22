@@ -5,3 +5,8 @@ export const tasksState = atom<Task[]>({
   key: "tasks",
   default: [],
 });
+
+export const completedTasksState = atom<Task[]>({
+  key: "completedTasks",
+  default: [],
+});

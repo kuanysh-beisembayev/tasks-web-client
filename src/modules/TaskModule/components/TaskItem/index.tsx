@@ -18,7 +18,9 @@ const TaskItem: FC<Props> = ({ task, onChange }) => {
   const auth = useRecoilValue(authState) as Auth;
 
   const handleClick = () => {
-    setLocation(`/task/${task.id}`);
+    if (!isCompleted) {
+      setLocation(`/task/${task.id}`);
+    }
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -37,12 +39,14 @@ const TaskItem: FC<Props> = ({ task, onChange }) => {
 
   return (
     <div
-      className="p-2 flex space-x-2 border-b last:border-b-0 cursor-pointer"
+      className={classNames("p-2 flex space-x-2 border rounded-lg", {
+        "cursor-pointer": !isCompleted,
+      })}
       onClick={handleClick}
     >
       <div className="grow min-w-0 flex flex-col space-y-2">
         <div className="flex items-center space-x-1">
-          {task.is_important && (
+          {task.is_important && !isCompleted && (
             <span className="bg-red-400 w-2 h-2 rounded-full shrink-0" />
           )}
           <h4

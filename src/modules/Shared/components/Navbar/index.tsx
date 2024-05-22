@@ -1,9 +1,14 @@
-import { RectangleStackIcon, UserIcon } from "@heroicons/react/24/outline";
+import {
+  RectangleStackIcon,
+  UserIcon,
+  CheckIcon,
+} from "@heroicons/react/24/outline";
 import classNames from "classnames";
 import { useBrowserLocation } from "wouter/use-browser-location";
 
 const MENU_ITEMS = [
-  { icon: RectangleStackIcon, text: "Tasks", location: "/" },
+  { icon: RectangleStackIcon, text: "Todo", location: "/" },
+  { icon: CheckIcon, text: "Completed", location: "/completed" },
   { icon: UserIcon, text: "My Profile", location: "/profile/me" },
 ];
 

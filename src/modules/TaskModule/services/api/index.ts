@@ -11,6 +11,15 @@ class TaskApiService {
     return response.data;
   }
 
+  static async getCompletedTasks(accessToken: string) {
+    const response = await client.get<Task[]>("/tasks/completed", {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    return response.data;
+  }
+
   static async updateTask(accessToken: string, taskId: string, task: NewTask) {
     const response = await client.put<Task>(`/tasks/${taskId}`, task, {
       headers: {

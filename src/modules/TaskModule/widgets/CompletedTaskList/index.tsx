@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
-import { Task } from "../../types";
-import TaskApiService from "../../services/api";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { tasksState } from "../../store";
+import { completedTasksState } from "../../store";
 import { authState } from "../../../AuthModule/store";
 import { Auth } from "../../../AuthModule/types";
+import TaskApiService from "../../services/api";
+import { Task } from "../../types";
 import TaskItem from "../../components/TaskItem";
 
-const TaskList = () => {
+const CompletedTaskList = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [tasks, setTasks] = useRecoilState(tasksState);
+  const [tasks, setTasks] = useRecoilState(completedTasksState);
   const auth = useRecoilValue(authState) as Auth;
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const TaskList = () => {
       setIsLoading(true);
     }
 
-    TaskApiService.getTasks(auth.accessToken)
+    TaskApiService.getCompletedTasks(auth.accessToken)
       .then((tasks) => {
         setTasks(tasks);
       })
@@ -51,4 +51,4 @@ const TaskList = () => {
   );
 };
 
-export default TaskList;
+export default CompletedTaskList;
