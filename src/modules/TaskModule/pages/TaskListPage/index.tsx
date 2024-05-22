@@ -7,7 +7,7 @@ const TaskListPage = () => {
   return (
     <div className="grow flex flex-col">
       <HorizontalWrapper>
-        <Heading>Tasks</Heading>
+        <Heading>Todo</Heading>
       </HorizontalWrapper>
       <div className="grow space-y-4 overflow-y-auto">
         <TaskList />
