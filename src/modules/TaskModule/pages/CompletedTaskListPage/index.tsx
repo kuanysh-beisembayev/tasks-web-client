@@ -4,11 +4,11 @@ import CompletedTaskList from "../../widgets/CompletedTaskList";
 
 const CompletedTaskListPage = () => {
   return (
-    <div className="grow flex flex-col">
+    <div className="grow flex flex-col pb-4">
       <HorizontalWrapper>
         <Heading>Completed</Heading>
       </HorizontalWrapper>
-      <div className="grow space-y-4 overflow-y-auto pb-4">
+      <div className="grow overflow-y-auto">
         <CompletedTaskList />
       </div>
     </div>
