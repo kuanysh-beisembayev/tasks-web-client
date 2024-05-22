@@ -5,9 +5,9 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { tasksState } from "../../store";
 import { authState } from "../../../AuthModule/store";
 import { Auth } from "../../../AuthModule/types";
-import TaskItem from "../../components/TaskItem";
+import TaskList from "../../components/TaskList";
 
-const TaskList = () => {
+const TodoTaskList = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [tasks, setTasks] = useRecoilState(tasksState);
   const auth = useRecoilValue(authState) as Auth;
@@ -30,25 +30,13 @@ const TaskList = () => {
     setTasks((tasks) => tasks.filter((task) => task.id !== updatedTask.id));
   };
 
-  if (isLoading) {
-    return (
-      <div className="flex justify-center">
-        <span className="loading loading-spinner" />
-      </div>
-    );
-  }
-
   return (
-    <div className="space-y-2 max-h-[10vh]">
-      {tasks.map((task) => (
-        <TaskItem
-          key={task.id}
-          task={task}
-          onChange={handleTaskChange}
-        />
-      ))}
-    </div>
+    <TaskList
+      tasks={tasks}
+      isLoading={isLoading}
+      onTaskChange={handleTaskChange}
+    />
   );
 };
 
-export default TaskList;
+export default TodoTaskList;

@@ -5,7 +5,7 @@ import { authState } from "../../../AuthModule/store";
 import { Auth } from "../../../AuthModule/types";
 import TaskApiService from "../../services/api";
 import { Task } from "../../types";
-import TaskItem from "../../components/TaskItem";
+import TaskList from "../../components/TaskList";
 
 const CompletedTaskList = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -30,24 +30,12 @@ const CompletedTaskList = () => {
     setTasks((tasks) => tasks.filter((task) => task.id !== updatedTask.id));
   };
 
-  if (isLoading) {
-    return (
-      <div className="flex justify-center">
-        <span className="loading loading-spinner" />
-      </div>
-    );
-  }
-
   return (
-    <div className="space-y-2 max-h-[10vh]">
-      {tasks.map((task) => (
-        <TaskItem
-          key={task.id}
-          task={task}
-          onChange={handleTaskChange}
-        />
-      ))}
-    </div>
+    <TaskList
+      tasks={tasks}
+      isLoading={isLoading}
+      onTaskChange={handleTaskChange}
+    />
   );
 };
 
