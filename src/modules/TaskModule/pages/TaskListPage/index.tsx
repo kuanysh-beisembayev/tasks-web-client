@@ -9,7 +9,7 @@ const TaskListPage = () => {
       <HorizontalWrapper>
         <Heading>Todo</Heading>
       </HorizontalWrapper>
-      <div className="grow space-y-4 overflow-y-auto">
+      <div className="grow overflow-y-auto">
         <TodoTaskList />
       </div>
       <HorizontalWrapper>
