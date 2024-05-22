@@ -16,18 +16,22 @@ const Navbar = () => {
   const [location, setLocation] = useBrowserLocation();
 
   return (
-    <div className="border-t py-1 flex justify-around">
+    <div className="border-t py-1 grid grid-cols-3">
       {MENU_ITEMS.map((menuItem, index) => (
-        <button
+        <div
           key={index}
-          className={classNames("btn btn-ghost flex flex-col items-center", {
-            "text-primary": location === menuItem.location,
-          })}
-          onClick={() => setLocation(menuItem.location)}
+          className="flex justify-center"
         >
-          {<menuItem.icon className="size-4" />}
-          <span className="leading-none text-xs">{menuItem.text}</span>
-        </button>
+          <button
+            className={classNames("btn btn-ghost flex flex-col items-center", {
+              "text-primary": location === menuItem.location,
+            })}
+            onClick={() => setLocation(menuItem.location)}
+          >
+            {<menuItem.icon className="size-4" />}
+            <span className="leading-none text-xs">{menuItem.text}</span>
+          </button>
+        </div>
       ))}
     </div>
   );
