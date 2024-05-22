@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import TaskList from "../../widgets/TaskList";
+import TodoTaskList from "../../widgets/TodoTaskList";
 import Heading from "../../../Shared/components/Heading";
 import HorizontalWrapper from "../../../Shared/components/HorizontalWrapper";
 
@@ -10,7 +10,7 @@ const TaskListPage = () => {
         <Heading>Todo</Heading>
       </HorizontalWrapper>
       <div className="grow space-y-4 overflow-y-auto">
-        <TaskList />
+        <TodoTaskList />
       </div>
       <HorizontalWrapper>
         <Link
