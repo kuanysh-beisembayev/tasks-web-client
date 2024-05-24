@@ -29,6 +29,14 @@ class TaskApiService {
     return response.data;
   }
 
+  static async deleteTask(accessToken: string, taskId: string) {
+    await client.delete(`/tasks/${taskId}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+  }
+
   static async updateTaskStatus(
     accessToken: string,
     taskId: string,
