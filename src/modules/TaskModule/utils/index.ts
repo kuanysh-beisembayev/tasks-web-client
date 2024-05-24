@@ -9,7 +9,6 @@ import { NewTask } from "../types";
 export const createNewTask = (): NewTask => {
   return {
     name: "",
-    description: "",
     is_important: false,
   };
 };
