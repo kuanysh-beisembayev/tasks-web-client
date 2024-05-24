@@ -8,7 +8,7 @@ const TaskCreatePage = () => {
   return (
     <div className="grow flex flex-col">
       <HorizontalWrapper
-        leftButton={
+        left={
           <Link
             to="/"
             className="btn btn-circle btn-sm"
