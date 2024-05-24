@@ -17,7 +17,7 @@ const TaskForm: FC<Props> = ({ initialTask, isLoading, onSubmit }) => {
   return (
     <form
       className="grow flex flex-col space-y-4"
-      onSubmit={handleSubmit((data) => onSubmit(data))}
+      onSubmit={handleSubmit(onSubmit)}
     >
       <div className="grow space-y-4">
         <label className="form-control">
@@ -30,17 +30,6 @@ const TaskForm: FC<Props> = ({ initialTask, isLoading, onSubmit }) => {
             className="input input-bordered rounded-xl"
             autoFocus
             {...register("name")}
-          />
-        </label>
-        <label className="form-control">
-          <div className="label">
-            <span className="label-text">Task Description</span>
-          </div>
-          <textarea
-            className="textarea textarea-bordered rounded-xl resize-none text-base"
-            placeholder="Type here"
-            rows={3}
-            {...register("description")}
           />
         </label>
         <div className="form-control">
